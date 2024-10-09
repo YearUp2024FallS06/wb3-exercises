@@ -1,9 +1,6 @@
 package com.pluralsight;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.regex.Pattern;
 
 public class Main {
@@ -16,6 +13,11 @@ public class Main {
         BufferedReader bufReader = new BufferedReader(fileReader);
         bufReader.readLine();
         String input;
+
+        BufferedWriter bw = new BufferedWriter( new FileWriter("payroll-oct-2024.txt"));
+
+        bw.write("id|name|gross pay\n");
+
         // read until there is no more data
         while((input = bufReader.readLine()) != null) {
             String[] tokens = input.split(Pattern.quote("|"));
@@ -25,26 +27,21 @@ public class Main {
             float hoursWorked = Float.parseFloat(tokens[2]);
             double payRate = Double.parseDouble(tokens[3]);
 
+            Employee theEmp = new Employee(employeeId, name, hoursWorked, payRate);
+            displayEmployee(theEmp);
 
+            String outputData = theEmp.getEmployeeId() + "|" + theEmp.getName() + "|" + theEmp.getGrossPay() + "\n";
+            bw.write(outputData);
 
-            System.out.println(input);
-            System.out.println(employeeId);
-            System.out.println(name);
-            System.out.println(hoursWorked);
-            System.out.println(payRate);
-            System.out.println("-------------------");
         }
         // close the stream and release the resources
         bufReader.close();
+        bw.close();
 
-        Employee e = new Employee(10, "Dana Wyatt", 52.5f, 12.5);
-
-
-        System.out.println(e.getGrossPay());
     }
 
 
-    private void displayEmployee(Employee e){
-        System.out.printf("%d:%s Pay this period: %.2f", e.getEmployeeId(), e.getName(), e.getGrossPay());
+    private static void displayEmployee(Employee e){
+        System.out.printf("%d:%s Pay this period: %.2f\n", e.getEmployeeId(), e.getName(), e.getGrossPay());
     }
 }
