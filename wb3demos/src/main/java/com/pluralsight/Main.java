@@ -27,6 +27,7 @@ public class Main {
         catch (Exception e){
            System.out.println("That is invalid.  Sorry.");
             System.out.println(e.getMessage());
+            //e.printStackTrace();
         }
 
 
