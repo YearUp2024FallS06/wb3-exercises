@@ -30,14 +30,44 @@ public class Console {
 
     public static short PromptForShort(String prompt){
         System.out.print(prompt);
-        short userinput = scanner.nextShort();
-        scanner.nextLine();
+        String value = scanner.nextLine();
+        short userinput = Short.parseShort(value);
         return  userinput;
+    }
+
+    public static int PromptForInt(String prompt){
+        System.out.print(prompt);
+        String value = scanner.nextLine();
+        int userinput = Integer.parseInt(value);
+        return userinput;
+    }
+
+    public static double PromptForDouble(String prompt){
+        System.out.print(prompt);
+        String userInputs = scanner.nextLine();
+        double userinput = Double.parseDouble(userInputs);
+        return userinput;
     }
 
     public static byte PromptForByte(String prompt){
         System.out.print(prompt);
-        byte userinput =scanner.nextByte();
+        String value = scanner.nextLine();
+        byte userinput = Byte.parseByte(value);
         return userinput;
     }
+
+    public static byte PromptForByte(){
+        String value = scanner.nextLine();
+        byte userinput = Byte.parseByte(value);
+        return userinput;
+    }
+
+    public static float PromptForFloat(String prompt){
+        System.out.print(prompt);
+        String value = scanner.nextLine();
+        float userinput =Float.parseFloat(value);
+        return  userinput;
+    }
+
+
 }
